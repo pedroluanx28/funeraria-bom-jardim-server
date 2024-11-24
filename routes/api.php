@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OnlineFuneralController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::group(['prefix' => '/online-funeral'], function () {
+        Route::get('/', [OnlineFuneralController::class, 'index']);
+        Route::get('/{id}', [OnlineFuneralController::class, 'show']);
+        Route::post('/', [OnlineFuneralController::class, 'store']);
+        Route::post('/enter-in-room', [OnlineFuneralController::class, 'enterInRoom']);
+        Route::put('/{id}', [OnlineFuneralController::class, 'update']);
+        Route::put('/change-status/{id}', [OnlineFuneralController::class, 'changeStatus']);
+    });
+
+    Route::get('/me', [UserController::class, 'me']);
 });
+
+Route::post('/login', [AuthController::class, 'login']);
