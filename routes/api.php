@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OnlineFuneralController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +21,22 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:sanctum')->group(function () {
     Route::group(['prefix' => '/online-funeral'], function () {
         Route::get('/', [OnlineFuneralController::class, 'index']);
-        Route::get('/{id}', [OnlineFuneralController::class, 'show']);
         Route::post('/', [OnlineFuneralController::class, 'store']);
-        Route::post('/enter-in-room', [OnlineFuneralController::class, 'enterInRoom']);
         Route::put('/{id}', [OnlineFuneralController::class, 'update']);
         Route::put('/change-status/{id}', [OnlineFuneralController::class, 'changeStatus']);
     });
 
     Route::get('/me', [UserController::class, 'me']);
+});
+
+Route::group(['prefix' => '/messages'], function () {
+    Route::get('/{chatId}', [MessagesController::class, 'index']);
+    Route::post('/', [MessagesController::class, 'store']);
+});
+
+Route::group(['prefix' => '/online-funeral'], function () {
+    Route::get('/{id}', [OnlineFuneralController::class, 'show']);
+    Route::post('/enter-in-room', [OnlineFuneralController::class, 'enterInRoom']);
 });
 
 Route::post('/login', [AuthController::class, 'login']);
