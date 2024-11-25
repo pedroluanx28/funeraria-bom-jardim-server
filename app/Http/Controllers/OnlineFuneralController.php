@@ -28,6 +28,8 @@ class OnlineFuneralController extends Controller
     {
         $result = OnlineFuneral::find($id);
 
+        $result->load('chat');
+
         return response()->json($result);
     }
 
@@ -59,10 +61,6 @@ class OnlineFuneralController extends Controller
         if (!$result) {
             return response()->json(['message' => 'Sala não encontrada'], 422);
         }
-
-        $result->update([
-            'is_active' => false
-        ]);
 
         return response()->json($result);
     }
