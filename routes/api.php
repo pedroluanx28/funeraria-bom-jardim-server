@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', [OnlineFuneralController::class, 'store']);
         Route::put('/{id}', [OnlineFuneralController::class, 'update']);
         Route::put('/change-status/{id}', [OnlineFuneralController::class, 'changeStatus']);
+        Route::put('/add-operating-period/{id}', [OnlineFuneralController::class, 'addOperatingPeriod']);
     });
 
     Route::get('/me', [UserController::class, 'me']);

@@ -25,10 +25,23 @@ class OnlineFuneral extends Model
         'room_password',
         'cam_link',
         'is_active',
+        'end_date',
+        'start_date',
+        'deceased_name'
     ];
 
     public function chat()
     {
         return $this->hasOne(Chat::class);
+    }
+
+    public function deceasedLogs()
+    {
+        return $this->hasMany(DeceasedLog::class);
+    }
+
+    public function currentDeceasedLog()
+    {
+        return $this->hasOne(DeceasedLog::class)->where('start_date', '<=', now())->where('end_date', '>=', now());
     }
 }
