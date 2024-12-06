@@ -77,8 +77,8 @@ class OnlineFuneralController extends Controller
         $result = OnlineFuneral::find($id);
 
         $result->update([
-            'start_date' => Carbon::parse($data['start_date']),
-            'end_date' => Carbon::parse($data['end_date']),
+            'start_date' => Carbon::parse($data['start_date'])->startOfDay(),
+            'end_date' => Carbon::parse($data['end_date'])->endOfDay(),
             'deceased_name' => $data['deceased_name']
         ]);
 
