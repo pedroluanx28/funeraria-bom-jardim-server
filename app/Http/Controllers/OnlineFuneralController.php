@@ -29,9 +29,13 @@ class OnlineFuneralController extends Controller
     {
         $result = OnlineFuneral::find($id);
 
-        $result->load(['chat', 'currentDeceasedLog']);
+        $result->load(['chat']);
 
-        if ($result->currentDeceasedLog === null) {
+        $now = Carbon::now();
+        $startDate = Carbon::parse($result->start_date);
+        $endDate = Carbon::parse($result->end_date);
+
+        if (!$now->between($startDate, $endDate)) {
             throw new \Exception('A sala não está ativa.');
         }
 
@@ -77,8 +81,8 @@ class OnlineFuneralController extends Controller
         $result = OnlineFuneral::find($id);
 
         $result->update([
-            'start_date' => Carbon::parse($data['start_date'])->startOfDay(),
-            'end_date' => Carbon::parse($data['end_date'])->endOfDay(),
+            'start_date' => Carbon::parse($data['start_date']),
+            'end_date' => Carbon::parse($data['end_date']),
             'deceased_name' => $data['deceased_name']
         ]);
 

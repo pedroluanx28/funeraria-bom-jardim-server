@@ -42,6 +42,9 @@ class OnlineFuneral extends Model
 
     public function currentDeceasedLog()
     {
-        return $this->hasOne(DeceasedLog::class)->where('start_date', '<=', now())->where('end_date', '>=', now());
+        return $this
+            ->hasOne(DeceasedLog::class)
+            ->where('start_date', '<=', now())
+            ->where('end_date', '>=', now());
     }
 }

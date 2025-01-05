@@ -6,6 +6,7 @@ use App\Http\Controllers\OnlineFuneralController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/change-status/{id}', [OnlineFuneralController::class, 'changeStatus']);
         Route::put('/add-operating-period/{id}', [OnlineFuneralController::class, 'addOperatingPeriod']);
     });
+
+    Route::post('/save-image-or-text', [ConfigurationController::class, 'saveImageOrText']);
+    Route::put('/delete-image-or-text/{file_type_id}', [ConfigurationController::class, 'deleteImageOrText']);
+    Route::get('/configuration', [ConfigurationController::class, 'index']);
 
     Route::get('/me', [UserController::class, 'me']);
 });

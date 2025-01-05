@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             OnlineFuneralSeeder::class,
             UserSeeder::class,
+            ConfigurationSeeder::class,
         ]);
     }
 }
