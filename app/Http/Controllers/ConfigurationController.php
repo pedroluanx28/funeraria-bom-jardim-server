@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Configuration;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ConfigurationController extends Controller
 {
@@ -32,10 +33,11 @@ class ConfigurationController extends Controller
                     return response()->json(['error' => 'O arquivo precisa ser uma imagem válida.'], 400);
                 }
 
-                $file_extension = $file->getClientOriginalExtension();
-                $imageName = md5($file->getClientOriginalName() . strtotime('now')) . '.' . $file_extension;
+                $uploadFile = Cloudinary::upload($file->getRealPath(), [
+                    'folder' => 'images'
+                ]);
 
-                $file->move(public_path('images'), $imageName);
+                $imageName = $uploadFile->getSecurePath();
 
                 if ($configuration) {
                     $configuration->update([
