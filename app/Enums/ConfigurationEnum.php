@@ -57,4 +57,6 @@ enum ConfigurationEnum: string
     case HOME_ADD_IMAGE = 26;
 
     case OUR_HISTORY_AND_PURPOSE_TEXT = 27;
+
+    case HOME_FIRST_IMAGE = 28;
 }

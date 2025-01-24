@@ -29,7 +29,7 @@ class OnlineFuneralController extends Controller
     {
         $result = OnlineFuneral::find($id);
 
-        $result->load(['chat']);
+        $result->load(['chat', 'currentDeceasedLog']); 
 
         $now = Carbon::now();
         $startDate = Carbon::parse($result->start_date);

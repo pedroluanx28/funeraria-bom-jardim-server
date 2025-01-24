@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Message;
 use App\Events\MessageSend;
+use Illuminate\Support\Facades\DB;
 
 class MessagesController extends Controller
 {
@@ -19,10 +20,12 @@ class MessagesController extends Controller
     {
         $data = $request->all();
 
-        $message = Message::create($data);
+        return DB::transaction(function () use ($data) {
+            $message = Message::create($data);
 
-        MessageSend::dispatch($message->chat_id);
+            MessageSend::dispatch($message->chat_id);
 
-        return response()->json($message);
+            return response()->json($message);
+        });
     }
 }
