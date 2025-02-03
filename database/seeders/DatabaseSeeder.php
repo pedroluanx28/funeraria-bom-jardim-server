@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             OnlineFuneralSeeder::class,
             UserSeeder::class,
             ConfigurationSeeder::class,
+            PlansSeeder::class,
         ]);
     }
 }
