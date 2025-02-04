@@ -15,7 +15,7 @@ class PlansSeeder extends Seeder
     public function run(): void
     {
         Plan::firstOrCreate([
-            'id' => 1,
+            // 'id' => 1,
             'name' => 'Básico',
             'joining' => 'Gratuita',
             'monthly_fee' => '38,00',
@@ -65,7 +65,7 @@ class PlansSeeder extends Seeder
         ]);
 
         Plan::firstOrCreate([
-            'id' => 2,
+            // 'id' => 2,
             'name' => 'Master',
             'joining' => 'Gratuita',
             'monthly_fee' => '60,00',
@@ -115,7 +115,7 @@ class PlansSeeder extends Seeder
         ]);
 
         Plan::firstOrCreate([
-            'id' => 3,
+            // 'id' => 3,
             'name' => 'Plus',
             'joining' => 'Gratuita',
             'monthly_fee' => '72,00',
@@ -169,7 +169,7 @@ class PlansSeeder extends Seeder
         ]);
 
         Plan::firstOrCreate([
-            'id' => 4,
+            // 'id' => 4,
             'name' => 'Cremax',
             'joining' => 'Gratuita',
             'monthly_fee' => '74,00',
@@ -223,7 +223,7 @@ class PlansSeeder extends Seeder
         ]);
 
         Plan::firstOrCreate([
-            'id' => 5,
+            // 'id' => 5,
             'name' => 'Premiun',
             'joining' => 'Gratuita',
             'monthly_fee' => '120,00',

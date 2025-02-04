@@ -50,7 +50,8 @@ Route::group(['prefix' => '/online-funeral'], function () {
 Route::group(['prefix' => '/plans'], function () {
     Route::get('/', [PlanController::class, 'index']);
     Route::post('/', [PlanController::class, 'store']);
-    Route::put('/{id}', [PlanController::class, 'update']);
+    Route::post('/{id}', [PlanController::class, 'update']);
+    Route::delete('/{id}', [PlanController::class, 'delete']);
 });
 
 Route::group(['prefix' => '/benefits'], function () {

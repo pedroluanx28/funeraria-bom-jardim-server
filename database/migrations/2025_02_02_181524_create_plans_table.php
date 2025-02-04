@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('monthly_fee');
             $table->string('shortage');
             $table->string('coverage');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

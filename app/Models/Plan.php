@@ -15,6 +15,7 @@ class Plan extends Model
         'monthly_fee',
         'shortage',
         'coverage',
+        'image'
     ];
 
     public function benefits()
